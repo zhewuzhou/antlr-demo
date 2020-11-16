@@ -9,16 +9,16 @@ package antlr.book.code.examples; /***
 
 import antlr.book.code.gen.RLexer;
 import antlr.book.code.gen.RParser;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CodePointCharStream;
+import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RuleContext;
 
 import static org.antlr.v4.gui.Trees.inspect;
+import static org.antlr.v4.runtime.CharStreams.fromFileName;
 
 public class TestR {
     public static void main(String[] args) throws Exception {
-        CodePointCharStream input = CharStreams.fromString(args[0]);
+        CharStream input = fromFileName(args[0]);
         RLexer lexer = new RLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         RParser parser = new RParser(tokens);
