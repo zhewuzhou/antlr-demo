@@ -28,7 +28,6 @@ class LispExprEvaluatorTest {
     public void shouldEvalLispExpr(String expr, Integer expect) {
         LispLexer lexer = new LispLexer(CharStreams.fromString(expr));
         LispParser parser = new LispParser(new CommonTokenStream(lexer));
-        Integer result = new LispExprEvaluator().visitProg(parser.prog());
-        assertThat(result, is(expect));
+        Integer visit = new LispEvalVisitor().visit(parser.prog());
     }
 }
