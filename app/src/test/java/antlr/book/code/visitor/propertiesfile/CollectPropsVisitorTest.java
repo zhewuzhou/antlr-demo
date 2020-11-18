@@ -1,4 +1,4 @@
-package antlr.book.code.visitor;
+package antlr.book.code.visitor.propertiesfile;
 
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.junit.jupiter.api.BeforeEach;

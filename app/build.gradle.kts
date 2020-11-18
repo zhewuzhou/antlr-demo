@@ -16,9 +16,17 @@ repositories {
     jcenter()
 }
 
+
+
+
 dependencies {
+    //versions go here
+    val junitJupiterVersion = "5.6.0"
+
     // Use JUnit Jupiter API for testing.
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
     testImplementation("org.hamcrest:hamcrest-all:1.3")
 
     // Use JUnit Jupiter Engine for testing.

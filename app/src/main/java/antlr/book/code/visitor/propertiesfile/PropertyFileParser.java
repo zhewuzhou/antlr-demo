@@ -1,4 +1,4 @@
-package antlr.book.code.visitor;
+package antlr.book.code.visitor.propertiesfile;
 
 // Generated from PropertyFile.g4 by ANTLR 4.8
 import org.antlr.v4.runtime.*;
