@@ -4,6 +4,8 @@ import org.antlr.v4.runtime.ParserRuleContext
 import org.antlr.v4.runtime.tree.ParseTreeProperty
 
 //todo: fix the public field
+//todo: why we need expr -> varListExpr, if we do inline, it will broken
+//todo: why we need addExpr multExpr
 class LispEvalListener : LispBaseListener() {
     val scope = ParseTreeProperty<MutableMap<String, Int>>()
     val values = ParseTreeProperty<Int>()
@@ -12,7 +14,6 @@ class LispEvalListener : LispBaseListener() {
     override fun exitProg(ctx: LispParser.ProgContext) {
         evalValue = values[ctx.children[0]]
     }
-
 
     override fun exitExpr(ctx: LispParser.ExprContext) {
         val curScope = curScope(ctx)
