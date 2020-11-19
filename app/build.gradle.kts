@@ -9,6 +9,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("org.jetbrains.kotlin.jvm") version "1.3.72"
 }
 
 repositories {
@@ -22,6 +23,12 @@ repositories {
 dependencies {
     //versions go here
     val junitJupiterVersion = "5.6.0"
+
+    // Align versions of all Kotlin components
+    platform("org.jetbrains.kotlin:kotlin-bom")
+
+    // Use the Kotlin JDK 8 standard library.
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     // Use JUnit Jupiter API for testing.
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
