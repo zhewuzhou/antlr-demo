@@ -7,9 +7,11 @@ import org.antlr.v4.runtime.tree.ParseTreeProperty
 //todo: why we need expr -> varListExpr, if we do inline, it will broken
 //todo: why we need addExpr multExpr
 class LispEvalListener : LispBaseListener() {
-    val scope = ParseTreeProperty<MutableMap<String, Int>>()
-    val values = ParseTreeProperty<Int>()
+    private val scope = ParseTreeProperty<MutableMap<String, Int>>()
+    private val values = ParseTreeProperty<Int>()
     var evalValue = 0
+        private set
+
 
     override fun exitProg(ctx: LispParser.ProgContext) {
         evalValue = values[ctx.children[0]]
