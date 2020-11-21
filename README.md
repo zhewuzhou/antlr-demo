@@ -17,3 +17,4 @@ grun Lisp prog -gui
 ## TODO
 1. How to add more useful information on ParseTree to make tree walk easier?
 2. What is the systematic way to generate g4 grammar?
+3. Why left recursion not works with LL(k) parsing algorithm?
