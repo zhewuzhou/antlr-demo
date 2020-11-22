@@ -17,7 +17,9 @@ class XMLConverter : JSONBaseListener() {
 
     override fun exitAnObject(ctx: AnObjectContext) {
         val buf = StringBuilder()
-        buf.append(LINE_BREAK)
+        if (notRoot(ctx)) {
+            buf.append(LINE_BREAK)
+        }
         for (child in ctx.pair()) {
             buf.append(xml[child!!])
         }
@@ -47,7 +49,7 @@ class XMLConverter : JSONBaseListener() {
     override fun exitPair(ctx: PairContext) {
         val tag = stripQuotes(ctx.STRING().text)
         val child = ctx.value()
-        val x = "<$tag>${xml[child]}</$tag>\n"
+        val x = "<$tag>${xml[child]}</$tag>$LINE_BREAK"
         xml.put(ctx, x)
     }
 
@@ -72,7 +74,10 @@ class XMLConverter : JSONBaseListener() {
     }
 
     fun toXML(root: ParseTree): String {
-        return xml[root]
+        val xml = xml[root]
+        return xml.substring(0, xml.lastIndex)
     }
+
+    private fun notRoot(ctx: ParseTree) = ctx.parent.parent != null
 }
 

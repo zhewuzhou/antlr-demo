@@ -24,4 +24,34 @@ internal class XMLConverterTest {
         //then
         assertThat(converter.toXML(root).endsWith("</aliases>\n"), `is`(true))
     }
+
+    @Test
+    fun `should handle the emtpy json`() {
+        //given
+        val lexer = JSONLexer(CharStreams.fromString("{}"))
+        val parser = JSONParser(CommonTokenStream(lexer))
+        val converter = XMLConverter()
+        val root = parser.json()
+
+        //when
+        ParseTreeWalker().walk(converter, root)
+
+        //then
+        assertThat(converter.toXML(root).isEmpty(), `is`(true))
+    }
+
+    @Test
+    fun `should handle the emtpy value json`() {
+        //given
+        val lexer = JSONLexer(CharStreams.fromString("{\"foo\": \"\"}"))
+        val parser = JSONParser(CommonTokenStream(lexer))
+        val converter = XMLConverter()
+        val root = parser.json()
+
+        //when
+        ParseTreeWalker().walk(converter, root)
+
+        //then
+        assertThat(converter.toXML(root), `is`("<foo></foo>"))
+    }
 }
